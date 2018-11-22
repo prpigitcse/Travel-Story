@@ -25,18 +25,89 @@ require_once 'dbConnect.php';
                 exit(1);
             }
         }
-        function fetch_comment()
+        function fetch_comment($sid)
         {
-            $sql = " Select body from comments order by id DESC;";
-            $result = mysqli_query($this->db->conn, $sql);      
+            $sql = " Select id,sid,name,body,date from comments where sid = $sid order by  id desc  ;";
+            $result = mysqli_query($this->db->conn, $sql);
             if($result)
             {
-                $solutions = array();
-                while($row = mysqli_fetch_assoc($result)) 
+                while($row = mysqli_fetch_assoc($result))
                 {
-                  $solutions[] = $row['body'];
+//                    print_r($row);die;
+                  $solutions[$row['id']] = $row;
                 }
             return $solutions;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
+        }
+
+        function reply_comment($pid)
+        {
+            $sql = " Select * from reply where pid = $pid order by  id desc;";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                while($row = mysqli_fetch_assoc($result))
+                {
+                    $solutions[$row['id']] = $row;
+                }
+                return $solutions;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
+        }
+
+
+        function like_check($sid,$user,$select)
+        {
+            $sql = " Select $select from reaction where sid = $sid and user = '$user'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                if($row = mysqli_fetch_assoc($result))
+                {
+                    $solutions = $row;
+                }
+                return $solutions;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
+        }
+
+        function like_update($sid,$user,$like,$dislike)
+        {
+            $sql = "UPDATE reaction SET `like` = $like, dislike = $dislike  WHERE  sid = $sid and user =  '$user'";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                return true;
+            }
+            else
+            {
+                echo "Error: " . $sql . "" . mysqli_error($this->db->conn);
+                exit(1);
+            }
+        }
+
+        function like_count($sid,$user,$check)
+        {
+            $sql = "select count(id) from reaction where $check = '1' and sid= $sid";
+            $result = mysqli_query($this->db->conn, $sql);
+            if($result)
+            {
+                $row = mysqli_fetch_assoc($result);
+                $solutions = $row['count(id)'];
+                return $solutions;
             }
             else
             {

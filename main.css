@@ -73,6 +73,40 @@
     border-width: 15px;
   }
 }
+.form-control
+{
+  width: 80%;
+}
 .comment-list .comment-post {
   margin-top: 6px;
 }
+
+.pressed .fa
+{
+  font-size: 50px;
+  color: white;
+  background-color: blue;
+  padding: 10px;
+  margin: 20px;
+}
+.not_pressed .fa
+{
+  font-size: 50px;
+  background: white;
+  padding: 10px;
+  margin: 20px;
+}
+
+#lcount
+{
+  font-size: 40px;
+  color: blue;
+}#dcount
+{
+  font-size: 40px;
+  color: blue;
+}
+ #comment1
+ {
+   display: none;
+ }

@@ -1,22 +1,50 @@
 <?php
 require_once('dbFunc.php');
-$name = "guru";
+$name = "guruss";
 $comment=$_POST['comment'];
-$time=date("d F,Y");
+$comment = trim($comment);
 $proimage = $_SESSION['proimage'];
+$reply = $_POST['creply'];
+$reply = trim($reply);
+$pid = $_POST['pid'];
 $obj = new dbFunc();
-if(isset($_POST['submit']));
+$sid = 1;
+$flag = 1;
+if(isset($_POST['submit']))
 {
-    if(!(empty($comment))){
-        $table = "comments";
-        $field = array("body");
-        $data = array($comment);
-        $obj->Insertdata($table,$field,$data);
+    if(!(empty($comment))) {
+        $date = date('Y-m-d H:i:s');
+        $date = strtotime($date);
+        if (preg_match('/call|buy|poker|casino|www.|.com/i', $comment)) {
+            $flag = 0;
+        }
+        if (preg_match('/[\' \. * " \'[0-9]/', $comment)) {
+            $flag = 0;
+        }
+        if ($flag == 1) {
+            $table = "comments";
+            $field = array("sid", "name", "body", "date");
+            $data = array($sid, $name, $comment, $date);
+            $obj->Insertdata($table, $field, $data);
+            echo "<script>location.href='comment.php'</script>";
+        }
+    }
 }
+if(isset($_POST['reply']));
+{
+  if(!(empty($reply))){
+      $date=date('Y-m-d H:i:s');
+      $date = strtotime($date);
+      $table = "reply";
+      $field = array("name","reply","pid","date");
+      $data = array($name,$reply,$pid,$date);
+      $obj->Insertdata($table,$field,$data);
+      echo "<script>location.href='comment.php'</script>";
+
+  }
 }
-$row = $obj-> fetch_comment();
-$count=count($row);
-?>
+$row = $obj-> fetch_comment($sid);
+    ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,28 +56,26 @@ $count=count($row);
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-        <script src="main.js"></script>
-    </head>
+        <script src="js/main.js"></script>
+</head>
 <body>
-
+      <div class="container">
       <h2 class='page-header'>Comments</h2>
       <?php
-       if ($count >= 1) 
-       {
-           for($i=0;$i<$count;$i++)
+      $count = sizeof($row);
+      if ($count >= 1)
+      {
+           foreach ($row as $key => $value)
            {
-            
-
-       echo "
-             <div class='container'>
-              <div class='row'>   
+           ?>
+             <div class='row'>   
               <div class='col-md-8'>
               <section class='comment-list'>
           <!-- First Comment -->
           <article class='row'>
             <div class='col-md-2 col-sm-2 hidden-xs'>
               <figure class='thumbnail'>
-                <img class=img-responsive' src='$proimage' />
+                <img class='img-responsive' src='<?php echo $proimage ?>' />
                 <figcaption class='text-center'>username</figcaption>
               </figure>
             </div>
@@ -57,34 +83,77 @@ $count=count($row);
               <div class='panel panel-default arrow left'>
                 <div class='panel-body'>
                   <header class='text-left'>
-                    <div class='comment-user'><i class='fa fa-user'></i> $name</div>
-                    <time class='comment-date' ><i class='fa fa-clock-o'></i> $time</time>
+                    <div class='comment-user'><i class='fa fa-user'></i><?php echo $value['name'] ?></div>
+                    <time class='comment-date' ><i class='fa fa-clock-o'></i><?php $date =date("d-m-Y",$value['date']); echo $date; ?></time>
                   </header>
                   <div class='comment-post'>
                     <p>
-                   $row[$i]
+                    <?php echo $value['body'] ?>
                     </p>
                   </div>
-                  <p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>
-                </div>
+                  <p class='text-right'><a href='#' class='btn btn-default btn-sm' onclick='reply("<?php echo $key ?>")';><i class='fa fa-reply'></i> reply</a></p>
+
+                     <?php
+                     $replies = $obj-> reply_comment($key);
+                     $rcount = sizeof($replies);
+                     if ($rcount >= 1)
+                     {
+                     foreach ($replies as $rkey => $rvalue)
+                     {
+
+                     ?>
+                        <div class='col-md-2 col-sm-2 hidden-xs'>
+                            <figure class='thumbnail'>
+                                <img class='img-responsive' src='<?php echo $proimage ?>' />
+                                <figcaption class='text-center'>username</figcaption>
+                            </figure>
+                        </div>
+                        <div class='col-md-10 col-sm-10'>
+                            <div class='panel panel-default arrow left'>
+                                <div class='panel-body'>
+                                    <header class='text-left'>
+                                        <div class='comment-user'><i class='fa fa-user'></i><?php echo $value['name'] ?></div>
+                                        <time class='comment-date' ><i class='fa fa-clock-o'></i><?php $date =date("d-m-Y H:i:s",$value['date']); echo $date ?></time>
+                                    </header>
+                                    <div class='comment-post'>
+                                        <p>
+                                            <?php echo $rvalue['reply'] ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+<?php }}?>
+
+
+                    <div class='row'>
+            <div class='col-md-8' id='<?php echo $key ?>' style="display:none;">
+                <form method='POST' action='comment.php'>
+                    <input name="pid" value="<?php echo $key ?>" type="hidden"/>
+                    <textarea name='creply' id='comment' class='form-control' cols='25' rows='8' maxlength='300' required></textarea>
+                   <br>
+                    <input type='submit' name='reply' class='btn btn-danger' value='Submit'>
+                </form>
+            </div>
+        </div>
+                  </div>
               </div>
             </div>
           </article>
-         
+          
           </section>
           </div>
+           </div><?php }} ?>
         </div>
-        </div></div>
-
-        ";}}
-      ?>
       <div class="container">
         <div class='row'>
             <div class='col-md-8'>
-            <h3>Comments</h3>
                 <form method='POST' action='comment.php'>
-                    <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300'></textarea>
-                   <br>
+                    <textarea name='comment1' id='comment1'></textarea>
+                    <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
+                    <br>
                     <input type='submit' name='submit' class='btn btn-danger' value='Submit'>
                 </form>
             </div>
