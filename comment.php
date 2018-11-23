@@ -12,6 +12,50 @@ $sid = 1;
 $flag = 1;
 if(isset($_POST['submit']))
 {
+    $gcaptch_response = $_POST['g-recaptcha-response'];
+
+    $remoteip = $_SERVER['REMOTE_ADDR'];
+    $secret = '6LdumnwUAAAAAHFDUR77bYYM9o8XPhg2xJsVdNxW';
+    $url = "https://www.google.com/recaptcha/api/siteverify";
+    $post_data = http_build_query(
+        array(
+            'secret' => $secret,
+            'response' => $gcaptch_response,
+            'remoteip' => $remoteip
+        )
+    );
+    $options=array(
+
+        // If site has SSL then
+//        'ssl'=>array(
+//
+//            // In my case its /etc/ssl/certs/cacert.pem
+//
+//            'cafile'            => '/path/to/cacert.pem',
+//            'verify_peer'       => true,
+//            'verify_peer_name'  => true,
+//        ),
+
+        'http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $post_data
+            )
+    );
+
+    $context = stream_context_create( $options );
+
+    $result_json = file_get_contents( $url, false, $context );
+    $resulting = json_decode($result_json, true);
+    if($resulting['success']) {
+   $flag=1;
+    } else {
+
+   $captchaerr = "captcha error";
+   $flag=0;
+    }
+
     if(!(empty($comment))) {
         $date = date('Y-m-d H:i:s');
         $date = strtotime($date);
@@ -154,10 +198,13 @@ $row = $obj-> fetch_comment($sid);
                     <textarea name='comment1' id='comment1'></textarea>
                     <textarea name='comment' id='comment' class='form-control' cols='30' rows='10' maxlength='300' required></textarea>
                     <br>
+                    <span class="error"><?php echo $captchaerr ?> </span><br>
+                    <div class="g-recaptcha" data-sitekey="6LdumnwUAAAAAPxnmm9BtC-WW9Uid4mSQGXbKPEz"></div><br>
                     <input type='submit' name='submit' class='btn btn-danger' value='Submit'>
                 </form>
             </div>
         </div>
         </div>
 </body>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </html>

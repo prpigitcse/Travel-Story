@@ -84,17 +84,20 @@
 .pressed .fa
 {
   font-size: 50px;
-  color: white;
+  color: black;
   background-color: blue;
   padding: 10px;
   margin: 20px;
+  border-radius:50%;
 }
 .not_pressed .fa
 {
   font-size: 50px;
-  background: white;
+  background: blue;
   padding: 10px;
-  margin: 20px;
+  margin: 20px;	
+  border-radius:50%;
+color:white;
 }
 
 #lcount
@@ -109,4 +112,8 @@
  #comment1
  {
    display: none;
+ }
+ .error
+ {
+   color: red;
  }

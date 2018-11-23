@@ -2,8 +2,8 @@
 $like = $_POST['like'];
 $dislike = $_POST['dislike'];
 $table = "reaction";
-$sid = 1;
-$user = "guru";
+$sid = 2;
+$user = "deeksha";
 require_once('dbFunc.php');
 $obj = new dbFunc();
 $select = "user";
@@ -22,11 +22,15 @@ $lcheck = "`like`";
 $lcount = $obj->like_count($sid,$user,$lcheck);
 $dcheck = "dislike";
 $dcount = $obj->like_count($sid,$user,$dcheck);
-echo $lcount;
+//echo $lcount;
 $count = [];
 $count['like'] = $lcount;
 $count['dislike'] = $dcount;
 //echo "upvote :" . $lcount . "downvote :" . $dcount;
-
-echo json_encode(array("lcount"=>$lcount,"dcount"=>$dcount));
+$result= new \stdClass();
+$result->lcount = $lcount;
+$result->dcount = $dcount;
+$myJSON = json_encode($result);
+echo $myJSON;
+//echo $dcount;
 ?>

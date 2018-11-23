@@ -1,7 +1,7 @@
 <?php
 require_once ('dbFunc.php');
 $obj = new dbFunc();
-$user = "guru";
+$user = "deeksha";
 $sid = 2;
 $select = "`like`";
 $lrow = $obj->like_check($sid,$user,$select);
@@ -29,25 +29,22 @@ $dcount = $obj->like_count($sid,$user,$dcheck);
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-<!--    <script src="js/reaction.js"></script>-->
     <script>
         $(document).ready(function() {
             $("#like").click(function(e) {
                 var like;
                 var dislike;
                 if ( $("#dislike").hasClass( "pressed" )) {
-                    $('#like').toggleClass('pressed not_pressed'); like=1;dislike=0;//alert(like);alert(dislike);
-                    $('#dislike').toggleClass('pressed not_pressed');dislike=0;//alert(like);alert(dislike);
+                    $('#like').toggleClass('pressed not_pressed'); like=1;dislike=0;
+                    $('#dislike').toggleClass('pressed not_pressed');dislike=0;
                 }
                 else {
                     $('#like').toggleClass('pressed not_pressed');
                     if ($("#like").hasClass("pressed")){
                         like = 1;dislike=0;
-                        // alert(like);alert(dislike);
                         }
                     else {
                         like = 0;dislike=0;
-                        // alert(like);alert(dislike);
                     }
                 }
                 $.ajax({
@@ -55,24 +52,24 @@ $dcount = $obj->like_count($sid,$user,$dcheck);
                     url: "ajax.php",
                     data: {"like": like, "dislike": dislike},
                     success: function(response){
-                        $("#lcount").html(response);
+                        var res = (JSON.parse(response));
+                        $("#lcount").html(res.lcount);
+                        $("#dcount").html(res.dcount);
                     }
                 });
             });
             $("#dislike").click(function(e) {
                 if ( $("#like").hasClass( "pressed" )) {
-                    $('#dislike').toggleClass('pressed not_pressed');dislike=1;like=0;//alert(like);alert(dislike);
-                    $('#like').toggleClass('pressed not_pressed');like=0;//alert(like);alert(dislike);
+                    $('#dislike').toggleClass('pressed not_pressed');dislike=1;like=0;
+                    $('#like').toggleClass('pressed not_pressed');like=0;
                 }
                 else {
                     $('#dislike').toggleClass('pressed not_pressed');
                     if ( $("#dislike").hasClass( "pressed" )) {
                         dislike = 1;like=0
-                        // alert(like); alert(dislike);
                     }
                         else {
                         dislike = 0;like=0;
-                        // alert(like); alert(dislike);
                     }
                 }
                 $.ajax({
@@ -80,21 +77,11 @@ $dcount = $obj->like_count($sid,$user,$dcheck);
                     url: "ajax.php",
                     data: {"like": like, "dislike": dislike},
                     success: function(response){
-                        $("#lcount").html(response);
-                    }
+                        var res = (JSON.parse(response));
+                        $("#lcount").html(res.lcount);
+                        $("#dcount").html(res.dcount);                    }
                 });
             });
-                    // $.ajax({
-                //     type: "POST",
-                //     url: "ajax.php",
-                //     success: function(response){
-                //
-                //         $("#show").html(response);
-                //         // alert(response);
-                //         $("#more").hide();
-                //     }
-                // });
-                // return false;
         });
     </script>
 </head>
