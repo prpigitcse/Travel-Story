@@ -20,7 +20,11 @@ class db{
         $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
         $result = mysqli_query($this->conn, $sql);
         if (mysqli_query($this->conn, $sql)) {
+<<<<<<< HEAD
          
+=======
+          return 1;
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
         }
         else
         {
@@ -28,6 +32,7 @@ class db{
         }
       }
 
+<<<<<<< HEAD
       function delete_image($table_name, $form_data,$story_id,$travel_id)
         {
         $valueSets = array();
@@ -65,6 +70,8 @@ class db{
 
       
 
+=======
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
      
 
 }

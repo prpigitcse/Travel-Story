@@ -5,10 +5,15 @@
     $travel_id=$_GET['travel_id'];
     $res=mysqli_query($conn,"select * from travel_details where travel_id=$travel_id");
     $row=mysqli_fetch_assoc($res);
+<<<<<<< HEAD
     $travelid=$row['travel_id'];
 
     if(isset($_POST['btnUpdate'])){
         
+=======
+
+    if(isset($_POST['btnUpdate'])){
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
         $place=$_POST['place'];
         $desc=$_POST['description'];
         $storyid=$_POST['storyid'];
@@ -17,6 +22,10 @@
             'place'=>$place,
             'description'=>$desc
         );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
         $obj=new db();
         $obj->dbconnector();
         $update_result=$obj->update_data($table_name,$formdata,$storyid);
@@ -31,6 +40,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <link rel="stylesheet" href="admin.css">
+<<<<<<< HEAD
    <link rel="stylesheet" href="jquery.fancybox.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -51,20 +61,35 @@
      });
      });
        </script>
+=======
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 </head>
 <body class="wrapper">
    <div class="container-fluid">
       <div class="row dashboard-header">
          <div class=" col-xs-12 col-md-6 text-center search">
+<<<<<<< HEAD
             <!-- <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
                <input type="text" name="employeeid"  size="30" placeholder="Search by place"/>
                <button type="submit" class="search_btn" id="search" name="search">Search</button><br /><br />
             </form> -->
+=======
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+               <input type="text" name="employeeid"  size="30" placeholder="Search by place"/>
+               <button type="submit" class="search_btn" id="search" name="search">Search</button><br /><br />
+            </form>
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
          </div>
          <div class="col-xs-12 col-md-6">
             <div class="col-md-12 text-right menus">
                 <a class="button" href="admin_dashboard.php">Home</a>
+<<<<<<< HEAD
                 <a class="button" href="view_user.php">View users</a>
+=======
+                <a class="button" href="edit.php">Edit Profile</a>
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
                 <a class="button" href="logout.php">Logout</a>
             </div>
          </div>
@@ -72,6 +97,7 @@
 
       <div class="col-xs-12 col-md-12">
             <div class="col-md-12 text-right menus">
+<<<<<<< HEAD
                 <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Edit</button>
                 <div class="dropdown">
                 <button class="dropbtn  btn btn-warning btn-lg">Delete</button>
@@ -82,6 +108,11 @@
                     <a href="" name="deleteall" id="deleteall" data-id="<?php echo $travelid;?>">Delete All</a>
                 </div>
                 </div>
+=======
+                <a class="button" href="admin_dashboard.php">Edit</a>
+                <a class="button" href="edit.php">Delete</a>
+                <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Edit</button>
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
             </div>
       </div>
 
@@ -95,7 +126,10 @@
             $sub_image=$row['sub_images'];
             $sub_image_data  = $sub_image;
             $sub_image_final = explode(",", $sub_image_data);
+<<<<<<< HEAD
            
+=======
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 
             $story_id=$row['story_id'];
 
@@ -111,6 +145,7 @@
 
                     <div class="col-md-12">
                       <?php
+<<<<<<< HEAD
                       $arr_length=count($sub_image_final);
                       $i=0;
                       foreach($sub_image_final as $sub_images)
@@ -126,6 +161,15 @@
                        </a>
                         <?php
                         $i++;
+=======
+                       foreach($sub_image_final as $sub_images)
+                       {
+                           ?>
+                        <div class="col-xs-6 col-md-4">
+                        <img class="travel_simg" src=<?php echo $sub_images;?> >
+                        </div>
+                        <?php
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
                        }
                        ?>
                   </div>
@@ -149,8 +193,13 @@
         <div class="modal-body">
             <form method="post" action="">
          <input type="hidden" value="<?php echo $storyid; ?>" name="storyid"/>
+<<<<<<< HEAD
          <input type="text" name="place" class="form-control" value="<?php echo $place ?>" required><br/>
          <textarea class="form-control" name="description" required><?php echo $description ?></textarea><br/>
+=======
+         <input type="text" name="place" class="form-control" value="<?php echo $place ?>"><br/>
+         <textarea class="form-control" name="description"><?php echo $description ?></textarea><br/>
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
          <div class="col-md-4 col-md-offset-4">
          <button type="submit" class="btn btn-info form-control" id="btnUpdate" name="btnUpdate">Update</button><br/><br/>
          </div> 
@@ -167,7 +216,10 @@
               
    </div>
 </div>
+<<<<<<< HEAD
 <script type="text/javascript" src="jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="general.js"></script>
+=======
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 </body>
 </html>

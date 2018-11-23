@@ -1,5 +1,13 @@
 .wrapper {
+<<<<<<< HEAD
     background-image: url('images/doctor.svg');
+=======
+<<<<<<< HEAD
+    background-image: url('images/doctor.svg');
+=======
+    background-image: url('images/travel1.jpg');
+>>>>>>> 545709d1953085cf01247cc32dc42eb68d3eddac
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -14,35 +22,71 @@ html{
     margin-top: 30px;
 }
 
+<<<<<<< HEAD
 .menus{
     margin-top: 30px;
     padding-right: 40px;
+=======
+<<<<<<< HEAD
+.menus{
+    margin-top: 30px;
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 }
 
 .dashboard-header{
     background-color: #0A0910;
     height:100px;
 }
+<<<<<<< HEAD
 .inner-image{
     display: none;
 }
 
+=======
+
+=======
+>>>>>>> 545709d1953085cf01247cc32dc42eb68d3eddac
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 .button{
     background-color: rgb(255, 0, 102);
     padding:10px;
     font-size:16px;
     margin-top: 30px;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
     color:white;
 }
 
 .button:hover{
     color:white;
+<<<<<<< HEAD
+=======
+=======
+}
+
+.button a {
+    color:white;
+}
+
+.button a:hover{
+>>>>>>> 545709d1953085cf01247cc32dc42eb68d3eddac
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
     text-decoration: none;
 } 
 
 .travel_img {
     border:2px solid black;
+<<<<<<< HEAD
     height:300px;
+=======
+<<<<<<< HEAD
+    height:300px;
+=======
+    height:100%;
+>>>>>>> 545709d1953085cf01247cc32dc42eb68d3eddac
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
     width:100%;
 }
 
@@ -52,6 +96,7 @@ html{
     width:150px;
     margin-top: 20px;
 }
+<<<<<<< HEAD
 .travel_inner_img{
     border:2px solid black;
     height:300px;
@@ -59,6 +104,10 @@ html{
     margin-top: 20px;
 }
 
+=======
+
+<<<<<<< HEAD
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
 .description {
     font-size: 18px;
     color:black;
@@ -84,6 +133,7 @@ html{
     margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .dropbtn {
     /* background-color: #4CAF50; */
     color: white;
@@ -159,3 +209,13 @@ header
 }
 
 }
+=======
+=======
+.story {
+    margin-top: 30px;
+    height:500px;
+    border: 2px solid black;
+    background-color: rgba(21, 91, 161, 0.3);
+}
+>>>>>>> 545709d1953085cf01247cc32dc42eb68d3eddac
+>>>>>>> 6294e09725680adeadde35f85f7992089dd0ece6
