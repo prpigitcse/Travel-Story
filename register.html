@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    
+</head>
+<body style="background-image: url('images/shade.jpg');background-size:cover;">
+    <form  method="post" action="register.php">
+
+      <div  style="border:1px solid white;border-radius:20px;background-color:white;height:600px;width:800px;margin-top:30px;margin-left:250px;"><br>
+        <div style="color:blue;font-size:34px; border:1px solid white;text-align:center;"><b>Registration</b></div><br>
+        <div style="font-size:18px; margin-left:20px;margin-right:20px;">
+            <b>User name</b><input type="text" class="form-control" name="username"><br>
+            <b>Email address</b><input type="email" class="form-control" name="email"><br>
+            <b>Mobile no</b><input type="text" class="form-control" maxlength=14 name="mobileno"><br>
+            <b>Password</b><input type="password" class="form-control" name="password"><br>
+            <b>Confirm password</b><input type="password" class="form-control"  name="confirm">
+            <br>
+       
+            <center>
+               <button type="submit" style="background-color:orange;color:white;border-radius:10px;font-size:20px;text-align:center;">Submit</button><br>
+            </center> 
+       </div><br>
+       <center>
+          <div><p style="color:black;font-size:18px; margin-left:20px;">Already have an account?<a style="color:lightskyblue;font-size:18px;" href="travlogin.html"> Login</a></p></div>
+       </center>
+      </div>
+    </form>
+</body>
+</html>
