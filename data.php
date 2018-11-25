@@ -51,10 +51,10 @@
      {
           {
                $valueSets = array();
-               foreach($data as $key => $value) {
+               foreach($form_data as $key => $value) {
                $valueSets[] = $key . " = '" . $value . "'";
                }
-               $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE story_id = '".$story_id."'";
+               $sql = "UPDATE $table_name SET ". join(",",$valueSets) . " WHERE id = '".$story_id."'";
                $result = mysqli_query($this->dbc, $sql);
                if (mysqli_query($this->dbc, $sql)) {
         

@@ -14,6 +14,7 @@
     /* padding: 0;
     margin: 0 */
 }
+
 .headerstyle{
     background-color: black;
     float: left;
@@ -87,4 +88,29 @@ text-align:center;
 color:rgb(255, 0, 102);
 font-weight: 700;
 margin-bottom: 20px;
+}
+.bannertitle{
+    position: absolute;
+    
+    margin-top: 150px;
+    margin-left: 500px;
+    color: rgb(255, 0, 102);
+    font-weight: 700;
+    font-size: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+    .bannertitle {
+        position: absolute;
+    
+    margin-top: 250px;
+    margin-left: 100px;
+    color: rgb(255, 0, 102);
+    font-weight: 700;
+    font-size: 30px;
+    }
+    .storytitle{
+        margin-left: 51px;
+margin-right: 51px;
+    }
 }

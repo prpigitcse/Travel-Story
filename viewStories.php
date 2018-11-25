@@ -22,6 +22,7 @@ $res = $y->search();
 <button type="submit" name="log" class="btnstyle">Login</button>
 </div>
 <div class="col-md-12 main-container">
+<h1 class="bannertitle">Travelling stories</h1>
     <img src="slider-1.jpg" class="centerview">
 </div>
     <div class="col-md-12" ><h1 class="moreDetailtiyle">Stories</h2>

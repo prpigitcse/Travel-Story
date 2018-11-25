@@ -8,20 +8,26 @@ if ( !empty($_GET['id'])) {
    
 }
 $res=$k->takesdetail($id);
-echo $id;
+
 $result = $res->fetch_assoc();
 $title=$result['title'];
 $description=$result['description'];
-echo $description;
+$photo=$result['photo'];?>
 
 
+
+<?php
 if(isset($_POST['update'])){
     $title = $_POST["title"];
     $description = $_POST["description"];
+    // $photo=$_FILES['file']['name'];
 
+    // $filepath="upload/".$photo;
+    // $up=move_uploaded_file($_FILES["file"]["tmp_name"] , "$filepath");
     $form_data = array(
         'title'=> $title,
-        'description'=>$description
+        'description'=>$description,
+        'photo'=>$photo
         
       );
     
@@ -54,16 +60,20 @@ if(isset($_POST['update'])){
 
     
     <div class="col-md-6" style="margin-left:28%;">
-        <form action="storiesphp.php" method="post" enctype="multipart/form-data">
+        <form  method="post" enctype="multipart/form-data">
         <label for="title" class="storytext">Title of story</label>
             <input type="text" id="title" name="title" value="<?php echo $title;?>" class="form-control" ><br>
-            <label for="title" class="storytext">Image</label>
-            <input type="file" class="form-control" name="file"><br/>
+            <!-- <label for="title" class="storytext">Image</label><br>
+            <img src="<?php echo $photo?>" >
+            <input type="file" class="form-control" name="file"><br/> -->
        
 
-        <label for="description" class="storytext">Write your travelling story</label>
-            <textarea name="description" class="ckeditor" value="<?php echo $description;?>" class="form-control"></textarea><br>
+        <label for="description" class="storytext">Write your travelling story</label><br>
+        
+        
+        <textarea name="description" class="ckeditor" class="form-control" value="#myDiv"><?php echo $description?></textarea>
 
+        
         <input name="update" type="submit" id="update" value="Update" class="form-control btnsubmit"><br><br>
         </form>
         </div>
